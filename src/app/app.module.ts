@@ -4,9 +4,15 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from "./app-routing.module";
 
+//RxJs
+import { StoreModule } from "@ngrx/store";
+import { appReducers } from "./store/app.reducers";
+
 import { AppComponent } from "./app.component";
 import { SharedModule } from "./shared/shared.module";
 import { UsersModule } from "./users/user.module";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { environment } from "src/environments/environment";
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +22,11 @@ import { UsersModule } from "./users/user.module";
     HttpClientModule,
     SharedModule,
     UsersModule,
+    StoreModule.forRoot(appReducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
