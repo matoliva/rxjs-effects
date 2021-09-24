@@ -4,9 +4,11 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from "./app-routing.module";
 
-//RxJs
+//NgRx
 import { StoreModule } from "@ngrx/store";
 import { appReducers } from "./store/app.reducers";
+import { EffectsModule } from "@ngrx/effects";
+import { EffectsArray } from "./store/effects";
 
 import { AppComponent } from "./app.component";
 import { SharedModule } from "./shared/shared.module";
@@ -27,6 +29,7 @@ import { environment } from "src/environments/environment";
       maxAge: 25,
       logOnly: environment.production,
     }),
+    EffectsModule.forRoot(EffectsArray),
   ],
   providers: [],
   bootstrap: [AppComponent],
