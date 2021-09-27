@@ -14,6 +14,9 @@ import * as actions from "../../store/actions";
 export class UserComponent implements OnInit {
   id: string;
   user: User;
+  loading: boolean;
+  error: any;
+  loaded: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -24,7 +27,15 @@ export class UserComponent implements OnInit {
     this.store
       .select("user")
       .pipe(filter((userState) => userState.user !== null))
-      .subscribe(({ user }) => (this.user = user));
+      .subscribe(({ user, loading, error, loaded }) => {
+        console.log("user", user);
+        console.log("loading", loading);
+        console.log("error", error);
+        this.user = user;
+        this.loading = loading;
+        this.error = error;
+        this.loaded = loaded;
+      });
 
     this.activatedRoute.paramMap.subscribe((params) => {
       this.id = params.get("id");

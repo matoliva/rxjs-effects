@@ -1,4 +1,4 @@
-<div class="row">
+<div *ngIf="!loading && user" class="row">
   <div class="col-4">
     <img [src]="user?.avatar" alt="avatar" class="img-thumbnail" />
   </div>
@@ -12,4 +12,20 @@
       </li>
     </ul>
   </div>
+</div>
+
+<div *ngIf="loading" class="alert alert-info text-center" role="alert">
+  <h4 class="alert-heading">Loading</h4>
+  <p>
+    <i class="fa fa-sync fa-spin fa-x2"></i>
+  </p>
+  <p class="mb-0"></p>
+</div>
+
+<div *ngIf="error && !user" class="alert alert-danger text-center" role="alert">
+  <h4 class="alert-heading">Error</h4>
+  <pre>
+    {{ error.message }}
+  </pre>
+  <p class="mb-0"></p>
 </div>

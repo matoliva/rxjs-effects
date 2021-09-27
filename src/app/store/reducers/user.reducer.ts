@@ -30,6 +30,7 @@ const _userReducer = createReducer(
     ...state,
     loading: false,
     loaded: false,
+    user: null,
     error: {
       url: payload.url,
       name: payload.name,
